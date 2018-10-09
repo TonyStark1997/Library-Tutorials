@@ -1,5 +1,7 @@
 # Numpy 教程
 
+![image1](https://raw.githubusercontent.com/TonyStark1997/Library-Tutorials/master/Numpy/Image/image1.png)
+
 ***
 
 ## 一、先决条件
@@ -936,7 +938,7 @@ array([[0, 1, 2, 3],
 >>> plt.show()
 ```
 
-![image1]()
+![image2](https://raw.githubusercontent.com/TonyStark1997/Library-Tutorials/master/Numpy/Image/image2.png)
 
 使用布尔值进行索引的第二种方法更类似于整数索引; 对于数组的每个维度，我们给出一个1D布尔数组，选择我们想要的切片：
 
@@ -1154,7 +1156,7 @@ array([[-3.],
      >>> plt.show()
      ```
      
-     
+     ![image3](https://raw.githubusercontent.com/TonyStark1997/Library-Tutorials/master/Numpy/Image/image3.png)
      
      ```python
      >>> # Compute the histogram with numpy and then plot it
@@ -1163,7 +1165,7 @@ array([[-3.],
      >>> plt.show()
      ```
      
-     
+     ![image4](https://raw.githubusercontent.com/TonyStark1997/Library-Tutorials/master/Numpy/Image/image4.png)
      
      ## 九、进一步阅读
      
