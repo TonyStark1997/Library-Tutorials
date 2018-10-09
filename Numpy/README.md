@@ -18,29 +18,29 @@
 
 Numpy的主要对象是同构多维数组，它是一个元素的列表（通常是数字），其中元素都是相同的类型，有正整数元组索引。在Numpy中，数组的维度称为轴。
 
-例如，3D空间中点的坐标[1,2,1]具有一个轴。该轴有3个元素，所以我们说它的长度为3。在下图所示的例子中，数组有2个轴。第一轴的长度为2，第二轴的长度为3。
+例如，3D空间中点的坐标 **[1,2,1]** 具有一个轴。该轴有3个元素，所以我们说它的长度为3。在下图所示的例子中，数组有2个轴。第一轴的长度为2，第二轴的长度为3。
 
 > [ [1，0，0]，
 >   [0，1，2] ]
 
-NumPy中的数组类称为**ndarray**。它也被别名数组所知。请注意，numpy.array与标准Python库类array.array不同，后者仅处理一维数组并提供较少的功能。ndarray对象的具有一些更重要的属性是：
+NumPy中的数组类称为**ndarray**。它有一个大家更熟悉的别名**array**。请注意，**numpy.array**与标准Python库类**array.array**不同，后者仅处理一维数组并提供较少的功能。**ndarray**对象的具有一些更重要的属性是：
 
-1. ndarray.ndim
+1. **ndarray.ndim**
 阵列的轴数（即数组的维度数量）
 
-2. ndarray.shape
-数组的大小。这是一个整数元组，其中的元素表示每个维度中数组的长度。对于具有n行和m列的矩阵，ndarray.shape将表示为（n，m）。因此，ndarray.shape的长度是数组的轴的数量ndim。
+2. **ndarray.shape**
+数组的大小。这是一个整数元组，其中的元素表示每个维度中数组的长度。对于具有n行和m列的矩阵，**shape**将表示为**（n，m）**。因此，**shape**的长度是数组的轴的数量**ndim**。
 
-3. ndarray.size
-数组的元素总数。这等于ndarray.shape元素的乘积。
+3. **ndarray.size**
+数组的元素总数。这等于**shape**元素的乘积。
 
-4. ndarray.dtype
-描述数组中元素类型的对象。可以使用标准Python类型创建或指定dtype。此外，NumPy还提供自己的类型。 如numpy.int32，numpy.int16和numpy.float64等一些例子。
+4. **ndarray.dtype**
+描述数组中元素类型的对象。可以使用标准Python类型创建或指定dtype。此外，NumPy还提供自己的类型。如numpy.int32，numpy.int16和numpy.float64等。
 
-5. ndarray.itemsize
-数组中每个元素的大小（以字节为单位）。例如，float64类型的元素数组具有itemsize 8（= 64/8），而complex32类型之一具有itemsize 4（= 32/8）。它相当于ndarray.dtype.itemsize。
+5. **ndarray.itemsize**
+数组中每个元素的大小（以字节为单位）。例如，**float64**类型的元素数组是**itemsize** 8（= 64/8），而**complex32**类型的元素数组是**itemsize** 4（= 32/8）。它相当于**ndarray.dtype.itemsize**。
 
-6. ndarray.data
+6. **ndarray.data**
 包含数组实际元素的缓冲区。通常，我们不需要使用此属性，因为我们将使用索引工具访问数组中的元素。
 
 ### 示例
@@ -73,9 +73,9 @@ array([6, 7, 8])
 
 ### 数组的创建
 
-这里有很多种方法可以创建数组。
+这里有几种方法可以创建数组。
 
-例如，可以使用array函数从常规Python列表或元组创建数组。数组元素的类型是从根据列表或元组中元素的类型推导出来的。
+例如，可以使用array函数从常规Python列表或函数**array**创建数组。数组元素的类型是从根据列表或元组中元素的类型推导出来的。
 
 ```python
 >>> import numpy as np
@@ -89,14 +89,14 @@ dtype('int64')
 dtype('float64')
 ```
 
-经常出现的错误在于使用array函数调用多个数字作为函数参数，而不是提供数字列表作为参数。
+经常出现的错误在于使用函数**array**调用多个数字作为函数参数，而不是提供数字列表作为参数。
 
 ```python
 >>> a = np.array(1,2,3,4)    # WRONG
 >>> a = np.array([1,2,3,4])  # RIGHT
 ```
 
-array函数自动将内嵌列表的列表转换为二维数组，将内嵌双层列表的列表转换为三维数组，等等。
+函数**array**自动将内嵌列表的列表转换为二维数组，将内嵌双层列表的列表转换为三维数组，等等。
 
 ```python
 >>> b = np.array([(1.5,2,3), (4,5,6)])
@@ -116,7 +116,7 @@ array([[ 1.+0.j,  2.+0.j],
 
 通常，数组的元素最初是未知的，但其大小是已知的。因此，NumPy提供了几个函数来创建具有初始占位符内容的数组。这些最小化了增长阵列的必要性，这是一项代价高的操作。
 
-函数zeros创建一个充满零的数组，函数ones创建一个充满1的数组，函数empty创建一个数组，其初始元素是随机的，取决于内存的状态。默认情况下，创建的数组的dtype是float64。
+函数**zeros**创建一个充满零的数组，函数**ones**创建一个充满1的数组，函数**empty**创建一个数组，其初始元素是随机的，取决于内存的状态。默认情况下，创建的数组的dtype是**float64**。
 
 ```python
 >>> np.zeros( (3,4) )
@@ -135,7 +135,7 @@ array([[  3.73603959e-262,   6.02658058e-154,   6.55490914e-260],
 [  5.30498948e-313,   3.14673309e-307,   1.00000000e+000]])
 ```
 
-为了创建数字序列，NumPy提供了一个类似于函数range的方法，它返回的是数组从而代替了直接写入列表。
+为了创建数字序列，NumPy提供了一个类似于**range**的函数，它返回的是数组从而代替了直接写入列表。
 
 ```python
 >>> np.arange( 10, 30, 5 )
@@ -144,7 +144,7 @@ array([10, 15, 20, 25])
 array([ 0. ,  0.3,  0.6,  0.9,  1.2,  1.5,  1.8])
 ```
 
-当arange与浮点参数一起使用时，由于有限的浮点精度，通常无法准确的获得元素数。出于这个原因，通常最好使用函数linspace作为参数接收我们想要的元素数，而不是上面那种方式：
+当函数**arange**与浮点参数一起使用时，由于有限的浮点精度，通常无法准确的获得元素数。出于这个原因，通常最好使用函数**linspace**作为参数接收我们想要的元素数，而不是上面那种方式：
 
 ```python
 >>> from numpy import pi
@@ -153,6 +153,9 @@ array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ,  1.25,  1.5 ,  1.75,  2.  ])
 >>> x = np.linspace( 0, 2*pi, 100 )   # useful to evaluate function at lots of points
 >>> f = np.sin(x)
 ```
+
+以上函数具体内容可以参考如下页面：
+[array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array),[zeros](https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html#numpy.zeros),[zeros_like](https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros_like.html#numpy.zeros_like),[ones](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html#numpy.ones),[ones_like](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones_like.html#numpy.ones_like),[empyt](https://docs.scipy.org/doc/numpy/reference/generated/numpy.empty.html#numpy.empty),[empty_like](https://docs.scipy.org/doc/numpy/reference/generated/numpy.empty_like.html#numpy.empty_like),[arange](https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html#numpy.arange),[linspace](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html#numpy.linspace),[numpy.random.rand](https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html#numpy.random.rand),[numpy.random.randn](https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.randn.html#numpy.random.randn),[fromfunction](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfunction.html#numpy.fromfunction),[fromfile](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html#numpy.fromfile)
 
 ### 打印阵列
 
