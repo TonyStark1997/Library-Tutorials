@@ -360,7 +360,7 @@ array([ 8, 27, 64])
 >>> a[:6:2] = -1000    # equivalent to a[0:6:2] = -1000; from start to position 6, exclusive, set every 2nd element to -1000
 >>> a
 array([-1000,     1, -1000,    27, -1000,   125,   216,   343,   512,   729])
->>> a[ : :-1]                                 # reversed a
+>>> a[ : :-1]          # reversed a
 array([  729,   512,   343,   216,   125, -1000,    27, -1000,     1, -1000])
 >>> for i in a:
 ...     print(i**(1/3.))
@@ -417,21 +417,21 @@ x [...，3]相当于x [：，：，：，：，3]、
 x [4，...，5，：]相当于x [4，：，：，5，：]。
 
 ```python
->>> c = np.array( [[[  0,  1,  2],               # a 3D array (two stacked 2D arrays)
+>>> c = np.array( [[[  0,  1,  2],    、# a 3D array (two stacked 2D arrays)
 ...                 [ 10, 12, 13]],
 ...                [[100,101,102],
 ...                 [110,112,113]]])
 >>> c.shape
 (2, 2, 3)
->>> c[1,...]                                   # same as c[1,:,:] or c[1]
+>>> c[1,...]       、# same as c[1,:,:] or c[1]
 array([[100, 101, 102],
 [110, 112, 113]])
->>> c[...,2]                                   # same as c[:,:,2]
+>>> c[...,2]         # same as c[:,:,2]
 array([[  2,  13],
 [102, 113]])
 ```
 
-对多维数组进行 **迭代** 是针对第一个轴完成的：
+对多维数组进行的 **迭代** 是针对第一个轴完成的：
 
 ```python
 >>> for row in b:
@@ -472,7 +472,10 @@ array([[  2,  13],
 43
 ```
 
-## 三、形状操纵
+以上函数具体内容可以参考如下页面：
+[Indexing](https://docs.scipy.org/doc/numpy/user/basics.indexing.html#basics-indexing), [Indexing](https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html#arrays-indexing) (reference), [newaxis](https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.newaxis), [ndenumerate](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html#numpy.ndenumerate), [indices](https://docs.scipy.org/doc/numpy/reference/generated/numpy.indices.html#numpy.indices)
+
+## 三、形状操作
 
 ***
 
@@ -493,7 +496,7 @@ array([[ 2.,  8.,  0.,  6.],
 可以使用各种命令更改阵列的形状。请注意，以下三个命令都返回一个已修改的数组，但不更改原始数组：
 
 ```python
->>> a.ravel()  # returns the array, flattened
+>>> a.ravel()       # returns the array, flattened
 array([ 2.,  8.,  0.,  6.,  4.,  5.,  1.,  1.,  8.,  9.,  3.,  6.])
 >>> a.reshape(6,2)  # returns the array with a modified shape
 array([[ 2.,  8.],
@@ -502,7 +505,7 @@ array([[ 2.,  8.],
 [ 1.,  1.],
 [ 8.,  9.],
 [ 3.,  6.]])
->>> a.T  # returns the array, transposed
+>>> a.T             # returns the array, transposed
 array([[ 2.,  4.,  8.],
 [ 8.,  5.,  9.],
 [ 0.,  1.,  3.],
@@ -513,9 +516,9 @@ array([[ 2.,  4.,  8.],
 (3, 4)
 ```
 
-由ravel（）产生的数组中元素的顺序通常是“C风格”，也就是说，最右边的索引“变化最快”，因此[0,0]之后的元素是[0,1]。如果将数组重新整形为其他形状，则该数组将被视为“C风格”。NumPy通常会创建按此顺序存储的数组，因此ravel（）通常不需要复制其参数，但如果数组是通过获取另一个数组的切片或使用异常选项创建的，则可能需要复制它。函数ravel（）和reshape（）也可以使用可选参数指示使用FORTRAN样式的数组，其中最左边的索引变化最快。
+由ravel（）产生的数组中元素的顺序通常是“C风格”，也就是说，最右边的索引“变化最快”，因此[0,0]之后的元素是[0,1]。如果将数组重新整形为其他形状，则该数组将被视为“C风格”。NumPy通常会创建按此顺序存储的数组，因此函数ravel（）通常不需要复制数组作为函数参数，但如果数组是通过获取另一个数组的切片或使用异特殊情况创建的，则可能需要复制数组。函数ravel（）和reshape（）也可以使用参数转换成FORTRAN样式的数组，其中最左边的索引变化最快。
 
-reshape函数返回其参数的修改形状，而ndarray.resize方法修改数组本身：
+函数[reshape](https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html#numpy.reshape)返回数组的修改形状，而ndarray.resize方法修改数组本身：
 
 ```python
 >>> a
@@ -537,7 +540,10 @@ array([[ 2.,  8.,  0.,  6.],
 [ 8.,  9.,  3.,  6.]])
 ```
 
-### 堆叠在一起的不同阵列
+以上函数具体内容可以参考如下页面：
+[ndarray.shape](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.shape.html#numpy.ndarray.shape), [reshape](https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html#numpy.reshape), [resize](https://docs.scipy.org/doc/numpy/reference/generated/numpy.resize.html#numpy.resize), [ravel](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ravel.html#numpy.ravel)
+
+### 堆叠不同阵列
 
 几个阵列可以沿不同的轴堆叠在一起：
 
@@ -560,7 +566,7 @@ array([[ 8.,  8.,  1.,  8.],
 [ 0.,  0.,  0.,  4.]])
 ```
 
-函数column_stack将1D数组作为列堆叠到2D数组中。它相当于仅针对2D数组的hstack：
+函数[column_stack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.column_stack.html#numpy.column_stack)将一维数组作为列堆叠到二维数组中。它相当于仅针对二维数组的函数[hstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html#numpy.hstack)：
 
 ```python
 >>> from numpy import newaxis
@@ -585,20 +591,23 @@ array([[ 4.,  3.],
 [ 2.,  8.]])
 ```
 
-另一方面，函数row_stack等效于任何输入数组的vstack。通常，对于具有两个以上维度的数组，hstack堆栈沿着它们的第二个轴，vstack堆栈沿着它们的第一个轴，并且连接允许可选参数给出连接应该发生的轴的数量。
+另一方面，函数 **row_stack** 等效于任何输入数组的函数[vstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html#numpy.vstack)。通常，对于具有两个以上维度的数组，函数[hstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html#numpy.hstack)沿着它们的第二个轴堆叠，函数[vstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html#numpy.vstack)沿着它们的第一个轴堆叠，并且函数[concatenate](https://docs.scipy.org/doc/numpy/reference/generated/numpy.concatenate.html#numpy.concatenate)允许可选参数给出连接应该发生的轴的数量。
 
-**注意：在复杂情况下，r_和c_对于通过沿一个轴堆叠数字来创建数组非常有用。 它们允许使用范围文字（“：”）**
+**注意：在复杂情况下，函数[r_](https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html#numpy.r_)和函数[c_]([numpy.c_ — NumPy v1.15 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.c_.html#numpy.c_)对于通过沿一个轴堆叠数字来创建数组非常有用。它们允许使用范围符号（“：”）**
 
 ```python
 >>> np.r_[1:4,0,4]
 array([1, 2, 3, 0, 4])
 ```
 
-当与数组一起用作参数时，r_和c_类似于vstack和hstack的默认行为，但允许使用可选参数给出连接轴的编号。
+当与数组一起用作参数时，函数[r_](https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html#numpy.r_)和函数[c_](https://docs.scipy.org/doc/numpy/reference/generated/numpy.c_.html#numpy.c_)类似于函数[vstack]()和函数[hstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html#numpy.hstack)的默认行为，但允许使用可选参数给出连接轴的编号。
+
+以上函数具体内容可以参考如下页面：
+[hstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html#numpy.hstack), [vstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html#numpy.vstack), [column_stack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.column_stack.html#numpy.column_stack), [concatenate](https://docs.scipy.org/doc/numpy/reference/generated/numpy.concatenate.html#numpy.concatenate), [c_](https://docs.scipy.org/doc/numpy/reference/generated/numpy.c_.html#numpy.c_), [r_](https://docs.scipy.org/doc/numpy/reference/generated/numpy.r_.html#numpy.r_)
 
 ### 将一个阵列拆分成几个较小的阵列
 
-使用hsplit，您可以沿着水平轴分割数组，方法是指定要返回的同形数组的数量，或者通过指定应该进行除法的列：
+使用函数[hsplit](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hsplit.html#numpy.hsplit)，您可以沿着水平轴分割数组，方法是指定要返回的同形数组的数量，或者通过指定应该进行除法的列：
 
 ```python
 >>> a = np.floor(10*np.random.random((2,12)))
@@ -617,15 +626,15 @@ array([[ 9.,  5.,  6.,  3.,  6.,  8.,  0.,  7.,  9.,  7.,  2.,  7.],
 [ 2.,  1.,  0.,  6.,  2.,  2.,  4.,  0.]])]
 ```
 
-vsplit沿垂直轴分割，array_split允许指定要分割的轴。
+函数[vsplit](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vsplit.html#numpy.vsplit)沿垂直轴分割，函数[array_split](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html#numpy.array_split)允许指定要分割的轴。
 
 ## 四、副本和视图
 
 ***
 
-在操作和操作数组时，有时会将数据复制到新数组中，有时则不会。 这通常是初学者混淆的根源。 有三种情况：
+在操作数组时，有时会将数据复制到新数组中，有时则不需要。这通常是初学者混淆的根源。有三种情况：
 
-### 根本不复制
+### 根本不需要复制
 
 简单分配不会复制数组对象或其数据。
 
@@ -651,23 +660,23 @@ Python将可变对象作为引用传递，因此函数调用不会复制。
 148293216
 ```
 
-### 查看或浅拷贝
+### 查看或浅度拷贝
 
-不同的数组对象可以共享相同的数据。view方法创建一个查看相同数据的新数组对象。
+不同的数组对象可以共享相同的数据。 **view** 方法创建一个查看相同数据的新数组对象。
 
 ```python
 >>> c = a.view()
 >>> c is a
 False
->>> c.base is a                        # c is a view of the data owned by a
+>>> c.base is a            # c is a view of the data owned by a
 True
 >>> c.flags.owndata
 False
 >>>
->>> c.shape = 2,6                      # a's shape doesn't change
+>>> c.shape = 2,6          # a's shape doesn't change
 >>> a.shape
 (3, 4)
->>> c[0,4] = 1234                      # a's data changes
+>>> c[0,4] = 1234          # a's data changes
 >>> a
 array([[   0,    1,    2,    3],
 [1234,    5,    6,    7],
@@ -685,7 +694,7 @@ array([[   0,   10,   10,    3],
 [   8,   10,   10,   11]])
 ```
 
-### 深拷贝
+### 深度拷贝
 
 复制方法生成数组及其数据的完整副本。
 
@@ -704,26 +713,33 @@ array([[   0,   10,   10,    3],
 
 ### 功能和方法概述
 
-以下是按类别排序的一些有用的NumPy函数和方法名称的列表。有关完整列表，请参阅例程。
+以下是按类别排序的一些有用的NumPy函数和方法名称的列表。有关完整列表，请参阅[例程](https://docs.scipy.org/doc/numpy/reference/routines.html#routines)。
 
 * 数组创建
-arange，array，copy，empty，empty_like，eye，fromfile，fromfunction，identity，linspace，logspace，mgrid，ogrid，ones，ones_like，r，zeros，zeros_like
-* 转换
-ndarray.astype，atleast_1d，atleast_2d，atleast_3d，mat
-* 手法
-array_split，column_stack，concatenate，diagonal，dsplit，dstack，hsplit，hstack，ndarray.item，newaxis，ravel，repeat，reshape，resize，squeeze，swapaxes，take，transpose，vsplit，vstack
-* 问题
-all, any, nonzero, where
-* 订购
-argmax，argmin，argsort，max，min，ptp，searchsorted，sort
-* 操作
-choose, compress, cumprod, cumsum, inner, ndarray.fill, imag, prod, put, putmask, real, sum
-* 基本统计
-cov，mean，std，var
-* 基本线性代数
-cross，dot，outer，linalg.svd，vdot
+[arange](https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html#numpy.arange)，[array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array)，[copy](https://docs.scipy.org/doc/numpy/reference/generated/numpy.copy.html#numpy.copy)，[empty](https://docs.scipy.org/doc/numpy/reference/generated/numpy.empty.html#numpy.empty)，[empty_like](https://docs.scipy.org/doc/numpy/reference/generated/numpy.empty_like.html#numpy.empty_like)，[eye](https://docs.scipy.org/doc/numpy/reference/generated/numpy.eye.html#numpy.eye)，[fromfile](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html#numpy.fromfile)，[fromfunction](https://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfunction.html#numpy.fromfunction)，[identity](https://docs.scipy.org/doc/numpy/reference/generated/numpy.identity.html#numpy.identity)，[linspace](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html#numpy.linspace)，[logspace](https://docs.scipy.org/doc/numpy/reference/generated/numpy.logspace.html#numpy.logspace)，[mgrid](https://docs.scipy.org/doc/numpy/reference/generated/numpy.mgrid.html#numpy.mgrid)，[ogrid](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ogrid.html#numpy.ogrid)，[ones](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html#numpy.ones)，[ones_like](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones_like.html#numpy.ones_like)，r，[zeros](https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html#numpy.zeros)，[zeros_like](https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros_like.html#numpy.zeros_like)
 
-## 五、少基础
+* 转换
+[ndarray.astype](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.astype.html#numpy.ndarray.astype)，[atleast_1d](https://docs.scipy.org/doc/numpy/reference/generated/numpy.atleast_1d.html#numpy.atleast_1d)，[atleast_2d](https://docs.scipy.org/doc/numpy/reference/generated/numpy.atleast_2d.html#numpy.atleast_2d)，[atleast_3d](https://docs.scipy.org/doc/numpy/reference/generated/numpy.atleast_3d.html#numpy.atleast_3d)，[mat](https://docs.scipy.org/doc/numpy/reference/generated/numpy.mat.html#numpy.mat)
+
+* 手法
+[array_split](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_split.html#numpy.array_split)，[column_stack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.column_stack.html#numpy.column_stack)，[concatenate](https://docs.scipy.org/doc/numpy/reference/generated/numpy.concatenate.html#numpy.concatenate)，[diagonal](https://docs.scipy.org/doc/numpy/reference/generated/numpy.diagonal.html#numpy.diagonal)，[dsplit](https://docs.scipy.org/doc/numpy/reference/generated/numpy.dsplit.html#numpy.dsplit)，[dstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.dstack.html#numpy.dstack)，[hsplit](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hsplit.html#numpy.hsplit)，[hstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html#numpy.hstack)，[ndarray.item](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.item.html#numpy.ndarray.item)，[newaxis](https://docs.scipy.org/doc/numpy/reference/constants.html#numpy.newaxis)，[ravel](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ravel.html#numpy.ravel)，[repeat](https://docs.scipy.org/doc/numpy/reference/generated/numpy.repeat.html#numpy.repeat)，[reshape](https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html#numpy.reshape)，[resize](https://docs.scipy.org/doc/numpy/reference/generated/numpy.resize.html#numpy.resize)，[squeeze](https://docs.scipy.org/doc/numpy/reference/generated/numpy.squeeze.html#numpy.squeeze)，[swapaxes](https://docs.scipy.org/doc/numpy/reference/generated/numpy.swapaxes.html#numpy.swapaxes)，[take](https://docs.scipy.org/doc/numpy/reference/generated/numpy.take.html#numpy.take)，[transpose](https://docs.scipy.org/doc/numpy/reference/generated/numpy.transpose.html#numpy.transpose)，[vsplit](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vsplit.html#numpy.vsplit)，[vstack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html#numpy.vstack)
+
+* 问题
+[all](https://docs.scipy.org/doc/numpy/reference/generated/numpy.all.html#numpy.all), [any](https://docs.scipy.org/doc/numpy/reference/generated/numpy.any.html#numpy.any), [nonzero](https://docs.scipy.org/doc/numpy/reference/generated/numpy.nonzero.html#numpy.nonzero), [where](https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where)
+
+* 订购
+[argmax](https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmax.html#numpy.argmax)，[argmin](https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmin.html#numpy.argmin)，[argsort](https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort)，[max](https://docs.python.org/dev/library/functions.html#max)，[min](https://docs.python.org/dev/library/functions.html#min)，[ptp](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ptp.html#numpy.ptp)，[searchsorted](https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html#numpy.searchsorted)，[sort](https://docs.scipy.org/doc/numpy/reference/generated/numpy.sort.html#numpy.sort)
+
+* 操作
+[choose](https://docs.scipy.org/doc/numpy/reference/generated/numpy.choose.html#numpy.choose), [compress](https://docs.scipy.org/doc/numpy/reference/generated/numpy.compress.html#numpy.compress), [cumprod](https://docs.scipy.org/doc/numpy/reference/generated/numpy.cumprod.html#numpy.cumprod), [cumsum](https://docs.scipy.org/doc/numpy/reference/generated/numpy.cumsum.html#numpy.cumsum), [inner](https://docs.scipy.org/doc/numpy/reference/generated/numpy.inner.html#numpy.inner), [ndarray.fill](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.fill.html#numpy.ndarray.fill), [imag](https://docs.scipy.org/doc/numpy/reference/generated/numpy.imag.html#numpy.imag), [prod](https://docs.scipy.org/doc/numpy/reference/generated/numpy.prod.html#numpy.prod), [put](https://docs.scipy.org/doc/numpy/reference/generated/numpy.put.html#numpy.put), [putmask](https://docs.scipy.org/doc/numpy/reference/generated/numpy.putmask.html#numpy.putmask), [real](https://docs.scipy.org/doc/numpy/reference/generated/numpy.real.html#numpy.real), [sum](https://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html#numpy.sum)
+
+* 基本统计
+[cov](https://docs.scipy.org/doc/numpy/reference/generated/numpy.cov.html#numpy.cov)，[mean](https://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html#numpy.mean)，[std](https://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html#numpy.std)，[var](https://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var)
+
+* 基本线性代数
+[cross](https://docs.scipy.org/doc/numpy/reference/generated/numpy.cross.html#numpy.cross)，[dot](https://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html#numpy.dot)，[outer](https://docs.scipy.org/doc/numpy/reference/generated/numpy.outer.html#numpy.outer)，[linalg.svd](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.svd.html#numpy.linalg.svd)，[vdot](https://docs.scipy.org/doc/numpy/reference/generated/numpy.vdot.html#numpy.vdot)
+
+## 五、其他基础
 
 ***
 
